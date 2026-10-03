@@ -6,7 +6,7 @@
 /*   By: jacgomez <jacgomez@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 18:03:30 by jacgomez          #+#    #+#             */
-/*   Updated: 2026/09/28 16:31:26 by jacgomez         ###   ########.fr       */
+/*   Updated: 2026/10/02 23:25:23 by jacgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*aux;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
 	len = 0;
 	while (s[len] != '\0')
 		len++;

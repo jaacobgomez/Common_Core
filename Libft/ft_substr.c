@@ -6,7 +6,7 @@
 /*   By: jacgomez <jacgomez@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 17:41:22 by jacgomez          #+#    #+#             */
-/*   Updated: 2026/09/24 18:00:53 by jacgomez         ###   ########.fr       */
+/*   Updated: 2026/10/02 22:47:43 by jacgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,28 @@ static char	*empty_substr(void)
 	return (str);
 }
 
+static void	copy_substr(char *str, const char *s, unsigned int start,
+						size_t len)
+{
+	size_t	j;
+
+	j = 0;
+	while (s[j + start] != '\0' && j < len)
+	{
+		str[j] = s[j + start];
+		j++;
+	}
+	str[j] = '\0';
+}
+
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t			len_str;
 	unsigned int	i;
 	char			*str;
-	unsigned int	j;
 
+	if (s == NULL)
+		return (NULL);
 	if (start >= (unsigned int)ft_strlen(s))
 		return (empty_substr());
 	i = start;
@@ -42,12 +57,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	str = malloc((len_str + 1) * sizeof (char));
 	if (str == NULL)
 		return (NULL);
-	j = 0;
-	while (s[j + start] != '\0' && j < len_str)
-	{
-		str[j] = s[j + start];
-		j++;
-	}
-	str[j] = '\0';
+	copy_substr(str, s, start, len_str);
 	return (str);
 }

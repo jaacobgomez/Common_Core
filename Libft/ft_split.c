@@ -6,24 +6,11 @@
 /*   By: jacgomez <jacgomez@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 13:51:32 by jacgomez          #+#    #+#             */
-/*   Updated: 2026/09/28 17:34:35 by jacgomez         ###   ########.fr       */
+/*   Updated: 2026/10/02 22:57:24 by jacgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/*
- * Primero encontramos cuantas palabras hay para saber cuanta memoria
- * reservo de cara al char**
- *
- * Luego hay que contar palabra por palabra para reservar memoria de cara
- * al char *
- *
- * Luego una vez reservado memoria, recorro y copio cada caracter en
- * cada char*
- *
- * Finalmente copio cada char* dentro de el char**
- * */
 
 static unsigned int	word_len(const char *s, char c)
 {
@@ -108,6 +95,8 @@ char	**ft_split(const char *s, char c)
 	unsigned int	words;
 	unsigned int	i;
 
+	if (s == NULL)
+		return (NULL);
 	words = count_words(s, c);
 	arr = malloc((words + 1) * sizeof(char *));
 	if (arr == NULL)

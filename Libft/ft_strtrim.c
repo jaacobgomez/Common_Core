@@ -6,7 +6,7 @@
 /*   By: jacgomez <jacgomez@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/24 18:04:23 by jacgomez          #+#    #+#             */
-/*   Updated: 2026/09/28 16:20:52 by jacgomez         ###   ########.fr       */
+/*   Updated: 2026/10/02 22:56:23 by jacgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 	unsigned int	i;
 	unsigned int	len;
 
+	if (s1 == NULL || set == NULL)
+		return (NULL);
 	start = find_start(s1, set);
 	end = find_end(s1, set, start);
 	if (start >= ft_strlen(s1))
