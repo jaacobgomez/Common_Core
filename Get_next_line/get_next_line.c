@@ -6,7 +6,7 @@
 /*   By: jacgomez <jacgomez@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/10 22:41:58 by jacgomez          #+#    #+#             */
-/*   Updated: 2026/10/10 22:43:51 by jacgomez         ###   ########.fr       */
+/*   Updated: 2026/10/13 15:13:25 by jacgomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,34 @@
 
 static char	*extract_line(char *stash)
 {
-//calcula la longitud según la tabla y devuelve ft_substr(stash, 0, longitud)
+	size_t	len;
+	char	*newline;
+
+	newline = ft_strchr(stash, '\n');
+	if (newline != NULL)
+		len = newline - stash + 1;
+	else
+		len = ft_strlen(stash);
+	return (ft_substr(stash, 0, len));
 }
 
-static char *cut_stash(char *stash)
+static char	*cut_stash(char *stash)
 {
-/*
-si no hay \n en la stash, la libera y devuelve NULL. Si lo hay, hace una copia
-de lo que queda detrás, libera la vieja y devuelve la copia
-(o NULL si el resto está vacío).
-*/
+	char	*newline;
+	char	*rest;
+
+	newline = ft_strchr(stash, '\n');
+	if (newline == NULL)
+	{
+		free(stash);
+		return (NULL);
+	}
+	rest = ft_substr(newline + 1, 0, ft_strlen(newline + 1));
+	free(stash);
+	if (rest == NULL && rest[0] == '\0')
+	{
+		free(rest);
+		return (NULL);
+	}
+	return (rest);
 }
